@@ -4,14 +4,16 @@
 #include <string>
 #include <limits>
 
-void GameScreen(char[3][3]);
-bool checkwhowins(char[3][3],char,int,int);
-void StartScreen();
-void EndScreen();
+void GameScreen(char[3][3]); //Loop to show the GameBoard of TicTacToe
+bool checkwhowins(char[3][3],char,int,int); //checks if someone won on TicTacToe
+void StartScreen(); //Init Main Menu for TicTacToe
+void EndScreen(); //Init End Screen
 void FileWriting(); //Creates (or loads if it exists) a Score.txt file and writes the rounds played and how many times each player won
 void TicTacToe(); //Init TicTacToe
 void RockPaperScissors(); //Init RockPaperScissors
-void StartScreen2();
+void StartScreen2(); //Init Main Menu for RockPaperScissors
+
+//Global Variables for FileWriting Function
 int rounds_total = 0;
 int player1won = 0,player2won = 0;
 
@@ -27,7 +29,7 @@ int main(){
 }
 
 
-
+//Init Main Menu for TicTacToe
 void StartScreen(){
 char menu = 'o';
 while ((menu != 'S') && (menu != 'Q'))
@@ -43,7 +45,9 @@ menu = toupper(menu);
 
 if (menu == 'H')
 {
-    std::cout<<"Player 1 is the X and Player 2 is the O\nAnd have to choose a row and a column from 0 to 2\nBy entering the number and pressing enter to confirm you input\n\n";
+std::cout<<"Player 1 is the X and Player 2 is the O"
+         <<"\nAnd have to choose a row and a column from 0 to 2"
+         <<"\nBy entering the number and pressing enter to confirm you input\n\n";
 }
 if (menu == 'N')
 {
@@ -60,12 +64,13 @@ if (menu == 'S')
 return;
 }
 
+//Init End Screen
 void EndScreen(){
     std::cout<<"\n\n----------------------------------------\n";
     std::cout<<"\tEnd\t Of\t  Game"<<std::endl;
     std::cout<<"----------------------------------------\n";
 }
-
+//Loop to show the GameBoard of TicTacToe
 void GameScreen(char gameboard[3][3]){
     std::cout<<"    0   1   2\n";
     std::cout<<"  --------------\n";
@@ -82,21 +87,18 @@ void GameScreen(char gameboard[3][3]){
     std::cout<<"  --------------\n";
 }
 }
-
+//checks if someone won on TicTacToe
 bool checkwhowins(char gameboard[3][3],char player,int row,int column){
-
+//Checks if the selected square has been occupied
 while(gameboard[row][column] != ' ')
     {
         std::cout<<"Grid is occupied try some other row or column \n";
         std::cin>>row>>column;
         std::cin.clear();
-        std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');
+        std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');//System to ignore anything but numbers
     }
     gameboard[row][column] = player;
 
-    
-    
-    
         /*straights
         |x|x|x|
         | | | |
@@ -140,7 +142,7 @@ while(gameboard[row][column] != ' ')
     
 }
 
-//Create file and write the rounds and score of each player
+//Creates (or loads if it exists) a Score.txt file and writes the rounds played and how many times each player won
 void FileWriting(){
 
 std::string teststring;
@@ -173,7 +175,7 @@ myfile.close();
 }
 
 }
-
+//Init TicTacToe
 void TicTacToe(){
 
 char player = 'O',tryagainchoice;
@@ -206,19 +208,15 @@ while (tryagain == true)
         {
             std::cout<<"Invalid Input\n";
             std::cin.clear();
-            std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');
+            std::cin.ignore(std::numeric_limits <std::streamsize>::max(), '\n');//System to ignore anything but numbers
             goto label;
         }
-        
-        
         
         while((row<0 || column<0) || (row>2 || column>2)){
         std::cout<<"Input was wrong try again row(0-2) column(0-2)"<<std::endl;
         std::cin>>row>>column;
         }
-            
-      
-        
+    
         win=checkwhowins(gameboard,player,row,column);
       
     }
@@ -271,7 +269,7 @@ if (answer == 'Y')
     
 
 }
-
+//Init Main Menu for RockPaperScissors
 void StartScreen2(){
 char menu = 'o';
 while ((menu != 'S') && (menu != 'Q'))
@@ -305,7 +303,7 @@ return;
 
 }
 
-
+//Init RockPaperScissors
 void RockPaperScissors(){
 
 

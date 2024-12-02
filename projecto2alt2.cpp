@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <limits>
+#include <cstdlib>
 
 void GameScreen(char[3][3]); //Loop to show the GameBoard of TicTacToe
 bool checkwhowins(char[3][3],char,int,int); //checks if someone won on TicTacToe
@@ -12,8 +13,10 @@ void FileWriting(); //Creates (or loads if it exists) a Score.txt file and write
 void TicTacToe(); //Init TicTacToe
 void RockPaperScissors(); //Init RockPaperScissors
 void StartScreen2(); //Init Main Menu for RockPaperScissors
+void StartScreen3();//PARTIAL
+void GuessingGame();//NOT FINISHED
 
-//Global Variables for FileWriting Function
+//Global Variables for the FileWriting Function
 int rounds_total = 0;
 int player1won = 0,player2won = 0;
 
@@ -35,7 +38,8 @@ char menu = 'o';
 while ((menu != 'S') && (menu != 'Q'))
 {
 
-std::cout<<"Tic-Tac-Toe Game\n\n";
+std::cout<<"/////////////////////\n/////Tic-Tac-Toe\\\\\\\\\\\n/////////////////////\n";
+
 std::cout<<"(S)tart game\n";
 std::cout<<"(H)elp\n";
 std::cout<<"(N)ext Game\n";
@@ -275,7 +279,11 @@ char menu = 'o';
 while ((menu != 'S') && (menu != 'Q'))
 {
 
-std::cout<<"Rock-Paper-Scissors Game\n\n";
+std::cout<<
+"///////////////////////////////\n"
+"//////Rock-Paper-Scissors\\\\\\\\\\\\\n"
+"///////////////////////////////\n";
+
 std::cout<<"(S)tart game\n";
 std::cout<<"(H)elp\n";
 std::cout<<"(N)ext Game\n";
@@ -289,7 +297,7 @@ if (menu == 'H')
 }
 if (menu == 'N')
 {
-    StartScreen();
+    StartScreen3();
     return;
 }
 
@@ -382,5 +390,50 @@ if (answer == 'Y')
 {
     StartScreen2();
 }
+
+}
+
+void StartScreen3()
+{
+char menu = 'o';
+while ((menu != 'S') && (menu != 'Q'))
+{
+
+std::cout<<
+"///////////////////////////////\n"
+"//////Guessing-Game\\\\\\\\\\\\\n"
+"///////////////////////////////\n";
+
+std::cout<<"(S)tart game\n";
+std::cout<<"(H)elp\n";
+std::cout<<"(N)ext Game\n";
+std::cout<<"(Q)uit\n";
+std::cin>>menu;
+menu = toupper(menu);
+
+if (menu == 'H')
+{
+    std::cout<<"A random number from [a number you choose to another number you choose and it will generate a random number]"; //Not Finished
+}
+if (menu == 'N')
+{
+    StartScreen();
+    return;
+}
+
+}
+if (menu == 'S')
+{
+   GuessingGame();
+}
+
+return;
+}
+
+void GuessingGame(){
+srand(time(0));
+
+int x;
+
 
 }
